@@ -1,0 +1,61 @@
+<% @lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" %>
+<% @kids = [
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+{:name => 'U1234', img: 'voi.jpg', description: @lorem},
+]
+%>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <% @kids.in_groups_of(3) do |row| %>
+    <div class="row">
+        <% row.each do |child| %>
+        <% next if child.nil? %>
+        <div class="col-lg-4">
+            <div class="contact-box">
+                <%= link_to dashboards_child_path do %>
+                <div class="col-sm-6 block">
+                    <div class="text-center">
+                        <img src="<%= image_path( child[:img])%>" alt="image" class="img-thumbnail">
+                    </div>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <div class="col-sm-12">
+                        <h2><strong><%= child[:name] %></strong></h2>
+                        <p><img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine</p>
+                        <p class="text-left">
+                            <%= child[:description].truncate(128, separator: /\s/)%>
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <% end %>
+
+</div>
+
+<% content_for :javascript do %>
+
+<script type="text/javascript">
+
+$(function () {
+
+    $('.contact-box').each(function () {
+        animationHover(this, 'pulse');
+    });
+
+});
+
+</script>
+
+<% end %>
+

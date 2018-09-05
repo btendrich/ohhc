@@ -1,0 +1,18 @@
+<div class="wrapper wrapper-content">
+    <div class="container">
+        <h1>Example Pages</h1>
+        <h3>Here are the example pages built so far:</h3>
+        <ul>
+            <li><%= link_to 'Children', dashboards_children_path %></li>
+            <p>A listing of all children with photos and truncated descriptions of them.</p>
+
+            <li><%= link_to 'Child', dashboards_child_path %></li>
+            <p>A details page on a particular child (or sibling group).</p>
+
+        </ul>
+
+    </div>
+</div>
+
+<% content_for :javascript do %>
+<% end %>
