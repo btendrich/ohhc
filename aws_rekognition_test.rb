@@ -19,6 +19,7 @@ pp resp
 puts "------------------------------------------------"
 
 resp.face_details.each do |face|
+  puts "BoundingBox.new( #{face.bounding_box.width}, #{face.bounding_box.height}, #{face.bounding_box.left}, #{face.bounding_box.top}),"
   puts "Face:"
   pp face.bounding_box
   puts
