@@ -1,9 +1,5 @@
 class DashboardsController < ApplicationController
 
-  def dashboard_4
-    render :layout => "layout_2"
-  end
-  
   def index
   end
   
@@ -43,14 +39,23 @@ class DashboardsController < ApplicationController
   end
   
   def child
-    @kid = Struct.new( :name, :description, :status, :country )
-    @images = [
-      {:full_size => 'kids/1001.jpg', :thumbnail => 'kids/1001_tn.jpg', :caption => 'This is a caption'},
-      {:full_size => 'kids/1002.jpg', :thumbnail => 'kids/1002_tn.jpg', :caption => 'This is a caption'},
-      {:full_size => 'kids/1003.jpg', :thumbnail => 'kids/1003_tn.jpg', :caption => 'This is a caption'},
-      {:full_size => 'kids/1004.jpg', :thumbnail => 'kids/1004_tn.jpg', :caption => 'This is a caption'},
-      {:full_size => 'kids/1005.jpg', :thumbnail => 'kids/1005_tn.jpg', :caption => 'This is a caption'},
-    ]
+    @kid = {
+      :name => "U9999",
+      :description => lorem,
+      :status => ['On-Hold','Available'].sample,
+      :country => ['Latvia','Ukraine'].sample,
+      :scholarship => rand(3)*100,
+      :size => ['Single', 'Sibling Pair', 'Sibling Group'].sample,
+    }
+    @images = []
+
+    1.upto(49) {|i|
+      @images << {:thumbnail => "kids/#{1000+i}_s.jpg", :medium => "kids/#{1000+i}_md.jpg", :full_size => "kids/#{1000+i}.jpg", :caption => "This is a caption about image #{1000+i}.jpg"}
+    }
+    
+    @images = @images.sample(5);
+
+
   end
   
 end

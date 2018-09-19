@@ -1,146 +1,146 @@
+<% content_for :page_title, 'Winter 2018' %>
+
 <div class="wrapper wrapper-content animated fadeInRight">
 
     <div class="row">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>Filters (as checkboxes)</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-3 b-r">
-
-                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
-                            <div class="form-group">
-                                <label class="">Status:</label>
-                                <div class="">
-                                    <label class="checkbox-inline"> <input type="checkbox" name="status" value="1"> Available </label>
-                                    <label class="checkbox-inline"> <input type="checkbox" name="status" value="2"> On-Hold </label>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="col-sm-3 b-r">
-
-                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
-                            <div class="form-group">
-                                <label class="">Gender:</label>
-                                <div class="">
-                                    <label class="checkbox-inline"> <input type="checkbox" name="gender" value="1"> Male </label>
-                                    <label class="checkbox-inline"> <input type="checkbox" name="gender" value="2"> Female </label>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="col-sm-3">
-
-                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
-                            <div class="form-group">
-                                <label class="">Country:</label>
-                                <div class="">
-                                    <label class="checkbox-inline"> <input type="checkbox" name="country" value="1"> <img src="<%= image_path('flags/16/Latvia.png')%>"> Latvia </label>
-                                    <label class="checkbox-inline"> <input type="checkbox" name="country" value="2"> <img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine </label>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="col-sm-3">
-
-                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
-                            <div class="form-group">
-                                <label class="">Size:</label>
-                                <div class="">
-                                    <label class="checkbox-inline"> <input type="checkbox" name="size" value="1"> Single </label>
-                                    <label class="checkbox-inline"> <input type="checkbox" name="size" value="2"> Sibling Pair </label>
-                                    <label class="checkbox-inline"> <input type="checkbox" name="size" value="2"> Sibling Group </label>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
+        <div class="col-lg-12 text-center">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h1>Winter 2018 Hosting</h1>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>Filters (as selectboxes)</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Filters (as checkboxes)</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-3 b-r">
-                        <form class="form-horizontal">
-                            <label class="col-lg-3 control-label">Status:</label>
-                            <div class="col-lg-7">
-                                <select class="form-control m-b" name="status">
-                                    <option value="0">Any</option>
-                                    <option value="0">Available</option>
-                                    <option value="0">On Hold</option>
-                                </select>
-                            </div>
-                        </form>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3 b-r">
+
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Status:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="status" value="1" checked>Available</label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="status" value="2" checked>On-Hold</label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-sm-3 b-r">
+
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Gender:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="gender" value="1" checked> Male </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="gender" value="2" checked> Female </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-sm-3 b-r">
+
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Country:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="country" value="1" checked> <img src="<%= image_path('flags/16/Latvia.png')%>"> Latvia </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="country" value="2" checked> <img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Size:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="1" checked> Single </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="2" checked> Sibling Pair </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="2" checked> Sibling Group </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
-                    <div class="col-sm-3 b-r">
+                    <div class="row">
 
-                        <form class="form-horizontal">
-                            <label class="col-lg-3 control-label">Gender:</label>
-                            <div class="col-lg-7">
-                                <select class="form-control m-b" name="status">
-                                    <option value="0">Any</option>
-                                    <option value="0">Male</option>
-                                    <option value="0">Female</option>
-                                </select>
-                            </div>
-                        </form>
+                        <div class="col-sm-3 b-r">
 
-                    </div>
-                    <div class="col-sm-3">
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Scholarship:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="1" checked> Yes </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="2" checked> No </label>
+                                    </div>
+                                </div>
+                            </form>
 
-                        <form class="form-horizontal">
-                            <label class="col-lg-3 control-label">Country:</label>
-                            <div class="col-lg-7">
-                                <select class="form-control m-b" name="status">
-                                    <option value="0">Any</option>
-                                    <option value="0">Latvia</option>
-                                    <option value="0">Ukraine</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
 
-                    </div>
-                    <div class="col-sm-3">
+                        <div class="col-sm-3 b-r">
 
-                        <form class="form-horizontal">
-                            <label class="col-lg-3 control-label">Size:</label>
-                            <div class="col-lg-7">
-                                <select class="form-control m-b" name="status">
-                                    <option value="0">Any</option>
-                                    <option value="0">Sinlge</option>
-                                    <option value="0">Sibling Pair</option>
-                                    <option value="0">Sibling Group</option>
-                                </select>
-                            </div>
-                        </form>
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Other Option:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="1" checked> Yes </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="2" checked> No </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-sm-3 b-r">
+
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Other Option:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="1" checked> Yes </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="2" checked> No </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-sm-3">
+
+                            <form class="form-horizontal col-sm-12">
+                                <div class="form-group">
+                                    <label class="">Other Option:</label>
+                                    <div class="">
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="1" checked> Yes </label>
+                                        <label class="checkbox-inline"> <input type="checkbox" name="size" value="2" checked> No </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <% @kids.in_groups_of(4) do |row| %>

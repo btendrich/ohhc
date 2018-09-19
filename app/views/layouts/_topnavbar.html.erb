@@ -8,20 +8,14 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="">
+                <li class="<%= current_class? dashboards_children2_path %>">
                     <%= link_to 'Children', dashboards_children2_path, 'aria-expanded': 'false', 'role': 'button' %>
                 </li>
-                <li class="">
+                <li class="<%= current_class? dashboards_child_path %>">
                     <%= link_to 'Child', dashboards_child_path, 'aria-expanded': 'false', 'role': 'button' %>
                 </li>
-                <li class="">
-                    <%= link_to 'Inactive', root_path, 'aria-expanded': 'false', 'role': 'button' %>
-                </li>
-                <li class="active">
-                    <%= link_to 'Active', root_path, 'aria-expanded': 'false', 'role': 'button' %>
-                </li>
                 <li class="dropdown">
-                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Drop Down <span class="caret"></span></a>
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Drop Down Sample<span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
                         <li><a href="">Menu item</a></li>
                         <li><a href="">Menu item</a></li>
