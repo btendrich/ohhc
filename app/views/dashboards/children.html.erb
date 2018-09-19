@@ -7,6 +7,11 @@
         <div class="col-lg-4">
             <div class="contact-box">
                 <%= link_to dashboards_child_path do %>
+
+            <div class="ribbon-content">
+                <div class="ribbon base"><span>Flag</span></div>
+            </div>
+
                 <div class="col-sm-6 block">
                     <div class="text-center">
                         <img src="<%= image_path( child[:img])%>" alt="image" class="img-thumbnail">
@@ -17,7 +22,7 @@
                         <h2><strong><%= child[:name] %></strong></h2>
                         <p><img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine</p>
                         <p class="text-left">
-                            <%= child[:description].truncate(128, separator: /\s/)%>
+                            <%= child[:description] %>
                         </p>
                     </div>
                 </div>

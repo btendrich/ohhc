@@ -1,0 +1,205 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Filters (as checkboxes)</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+
+                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
+                            <div class="form-group">
+                                <label class="">Status:</label>
+                                <div class="">
+                                    <label class="checkbox-inline"> <input type="checkbox" name="status" value="1"> Available </label>
+                                    <label class="checkbox-inline"> <input type="checkbox" name="status" value="2"> On-Hold </label>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-3 b-r">
+
+                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
+                            <div class="form-group">
+                                <label class="">Gender:</label>
+                                <div class="">
+                                    <label class="checkbox-inline"> <input type="checkbox" name="gender" value="1"> Male </label>
+                                    <label class="checkbox-inline"> <input type="checkbox" name="gender" value="2"> Female </label>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
+                            <div class="form-group">
+                                <label class="">Country:</label>
+                                <div class="">
+                                    <label class="checkbox-inline"> <input type="checkbox" name="country" value="1"> <img src="<%= image_path('flags/16/Latvia.png')%>"> Latvia </label>
+                                    <label class="checkbox-inline"> <input type="checkbox" name="country" value="2"> <img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine </label>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <form class="form-horizontal col-sm-10 col-sm-offset-1">
+                            <div class="form-group">
+                                <label class="">Size:</label>
+                                <div class="">
+                                    <label class="checkbox-inline"> <input type="checkbox" name="size" value="1"> Single </label>
+                                    <label class="checkbox-inline"> <input type="checkbox" name="size" value="2"> Sibling Pair </label>
+                                    <label class="checkbox-inline"> <input type="checkbox" name="size" value="2"> Sibling Group </label>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Filters (as selectboxes)</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <form class="form-horizontal">
+                            <label class="col-lg-3 control-label">Status:</label>
+                            <div class="col-lg-7">
+                                <select class="form-control m-b" name="status">
+                                    <option value="0">Any</option>
+                                    <option value="0">Available</option>
+                                    <option value="0">On Hold</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-3 b-r">
+
+                        <form class="form-horizontal">
+                            <label class="col-lg-3 control-label">Gender:</label>
+                            <div class="col-lg-7">
+                                <select class="form-control m-b" name="status">
+                                    <option value="0">Any</option>
+                                    <option value="0">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <form class="form-horizontal">
+                            <label class="col-lg-3 control-label">Country:</label>
+                            <div class="col-lg-7">
+                                <select class="form-control m-b" name="status">
+                                    <option value="0">Any</option>
+                                    <option value="0">Latvia</option>
+                                    <option value="0">Ukraine</option>
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <form class="form-horizontal">
+                            <label class="col-lg-3 control-label">Size:</label>
+                            <div class="col-lg-7">
+                                <select class="form-control m-b" name="status">
+                                    <option value="0">Any</option>
+                                    <option value="0">Sinlge</option>
+                                    <option value="0">Sibling Pair</option>
+                                    <option value="0">Sibling Group</option>
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <% @kids.in_groups_of(4) do |row| %>
+    <div class="row">
+
+        <% row.each do |child| %>
+        <% next if child.nil? %>
+
+        <div class="col-md-3">
+
+            <div class="ibox">
+                <div class="ibox-content child-box">
+
+                    <div class="child-detail">
+                <%= link_to dashboards_child_path do %>
+                        <img src="<%= image_path( child[:img])%>" alt="image" class="img-thumbnail">
+                <% end %>
+                    </div>
+                    <div class="child-desc">
+                        <% if child[:status] %>
+                            <span class="child-right-flag" style="background: <%= child[:status][:color]%>"><%= child[:status][:text]%></span>
+                        <% end %>
+                        <% if child[:scholarship] %>
+                            <span class="child-left-flag">Scholarship</span>
+                        <% end %>
+                        <%= link_to child[:name], dashboards_child_path, class: 'child-name' %>
+                        <span class="child-country"><img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine</span>
+                        <div class="small">
+                            <%= child[:description] %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% end %>
+
+    </div>
+
+    <% end %>
+
+</div>
+
+<% content_for :javascript do %>
+
+<script type="text/javascript">
+
+
+$(function() {
+    $("#ionrange").ionRangeSlider({
+        min: 0,
+        max: 5000,
+        type: 'double',
+        prefix: "$",
+        maxPostfix: "+",
+        prettify: false,
+        hasGrid: true
+    });
+
+});
+
+<% end %>

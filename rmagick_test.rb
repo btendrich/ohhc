@@ -1,11 +1,19 @@
 #!/usr/bin/env ruby
 require 'rmagick'
 require 'pp'
+require 'dotenv'
+require 'aws-sdk'
+
+Dotenv.load
 
 ENLARGEMENT_FACTOR = 1.5
 OUTPUT_SIZE = [256,256]
+SIMULATE = nil
 
 abort "Usage: #{$0} <path/to/image.jpg>" unless ARGV[0]
+
+output_file = /^(.+)\.(.{3})$/.match(ARGV[0])[1]
+output_file = output_file + "_tn.jpg"
 
 class Point
   attr_accessor :x, :y
@@ -13,6 +21,10 @@ class Point
   def initialize( x: nil, y: nil )
     @x = x
     @y = y
+  end
+  
+  def to_s
+    "Point(object_id: #{"0x00%x" % (object_id << 1)}, x: #{x}, y: #{y})"
   end
 end
 
@@ -25,7 +37,7 @@ class BoundingBox
     @left = left
     @top = top
   end
-  
+
   def points
     points = []
     points << Point.new(x: left, y: top)
@@ -35,48 +47,71 @@ class BoundingBox
     points
   end
 
+  def to_s
+    "BoundingBox(object_id: #{"0x00%x" % (object_id << 1)}, width: #{width}, height: #{height}, left: #{left}, top: #{top})"
+  end
 end
 
-faces = [
-  # group
-#  BoundingBox.new( width: 0.22070707380771637, height: 0.3313116133213043, left: 0.19494949281215668, top: 0.22592873871326447),
-#  BoundingBox.new( width: 0.19343434274196625, height: 0.29037150740623474, left: 0.6484848260879517, top: 0.1645185798406601),
-#  BoundingBox.new( width: 0.17373737692832947, height: 0.2608036398887634, left: 0.435353547334671, top: 0.3987869620323181),
+if SIMULATE
+  # simualte the AWS calls - for debugging
+  if ARGV[0] == 'single.jpg'
+    faces = [
+      BoundingBox.new( width: 0.2651839256286621, height: 0.19374999403953552, left: 0.34559452533721924, top: 0.09875000268220901),
+    ]
+  elsif ARGV[0] == 'group.jpg'
+    faces = [
+      BoundingBox.new( width: 0.22070707380771637, height: 0.3313116133213043, left: 0.19494949281215668, top: 0.22592873871326447),
+      BoundingBox.new( width: 0.19343434274196625, height: 0.29037150740623474, left: 0.6484848260879517, top: 0.1645185798406601),
+      BoundingBox.new( width: 0.17373737692832947, height: 0.2608036398887634, left: 0.435353547334671, top: 0.3987869620323181),
+    ]
+  else
+    abort "Unable to simulate #{ARGV[0]} -- no sample data"
+  end
+else
+  # lets make actual AWS calls
+  client = Aws::Rekognition::Client.new
 
-  # single
-  BoundingBox.new( width: 0.2651839256286621, height: 0.19374999403953552, left: 0.34559452533721924, top: 0.09875000268220901),
-]
+  resp = client.detect_faces( image: { bytes: File.read(ARGV.first) } )
+
+  faces = []
+
+  resp.face_details.each do |face|
+    faces << BoundingBox.new( width: face.bounding_box.width, height: face.bounding_box.height, left: face.bounding_box.left, top: face.bounding_box.top )
+  end
+end
 
 points = faces.collect {|face| face.points}
 points.flatten!
-pp points
 
 face_box = BoundingBox.new()
 
+# use the minimum and maximim X values to determine the left and width of a box containing all points
 points.sort! {|a,b| a.x <=> b.x}
-puts "Minimum X: #{points.first.x} (max: #{points.last.x})"
 face_box.left = points.first.x
 face_box.width = points.last.x - points.first.x
 
+# use the minimum and maximum Y values to determina the top and height of a box containing all points
 points.sort! {|a,b| a.y <=> b.y}
-puts "Minimum Y: #{points.first.y} (max: #{points.last.y})"
 face_box.top = points.first.y
 face_box.height = points.last.y - points.first.y
 
+puts "Found #{faces.count} faces which generated #{points.count} points. All face points contained within #{face_box}."
+
 # read image
 image = Magick::ImageList.new( ARGV[0] )
+image.auto_orient!
 
 # convert percentage based bounding box into actual pixels
 bounding_box_in_pixels = BoundingBox.new( width: (face_box.width * image.columns).to_i, height: (face_box.height * image.rows).to_i, left: (face_box.left * image.columns).to_i, top: (face_box.top * image.rows).to_i )
 
-pp bounding_box_in_pixels
+puts "Image is #{image.columns}x#{image.rows} and face point bounding box is #{bounding_box_in_pixels}"
 
 
-cropped = image.crop( bounding_box_in_pixels.left, bounding_box_in_pixels.top, bounding_box_in_pixels.width, bounding_box_in_pixels.height )
+#cropped = image.crop( bounding_box_in_pixels.left, bounding_box_in_pixels.top, bounding_box_in_pixels.width, bounding_box_in_pixels.height )
 
-cropped.write('output.jpg')
+#cropped.write('output.jpg')
 
-pp bounding_box_in_pixels
+#pp bounding_box_in_pixels
 
 enlarged_bounding_box_in_pixels = BoundingBox.new
 
@@ -88,15 +123,19 @@ enlarged_bounding_box_in_pixels.height = bounding_box_in_pixels.height * ENLARGE
 enlarged_bounding_box_in_pixels.top = bounding_box_in_pixels.top - (bounding_box_in_pixels.height * (ENLARGEMENT_FACTOR-1))/2
 enlarged_bounding_box_in_pixels.left = bounding_box_in_pixels.left - (bounding_box_in_pixels.height * (ENLARGEMENT_FACTOR-1))/2
 puts "Shift the bounding box left by #{(bounding_box_in_pixels.height * (ENLARGEMENT_FACTOR-1))/2} pixels"
-pp enlarged_bounding_box_in_pixels
+#pp enlarged_bounding_box_in_pixels
 
 cropped = image.crop( enlarged_bounding_box_in_pixels.left, enlarged_bounding_box_in_pixels.top, enlarged_bounding_box_in_pixels.width, enlarged_bounding_box_in_pixels.height )
 
-cropped.write('output2.jpg')
+#cropped.write('output2.jpg')
 
 resized = cropped.resize_to_fit(OUTPUT_SIZE[0],OUTPUT_SIZE[0])
 
-resized.write('output3.jpg')
+resized.write(output_file)
+puts "Wrote #{output_file}"
+
+
+abort
 
 puts "make the image square"
 
@@ -185,7 +224,7 @@ end
 cropped = image.crop( square_bounding_box.left, square_bounding_box.top, square_bounding_box.width, square_bounding_box.height )
 resized = cropped.resize_to_fit(OUTPUT_SIZE[0],OUTPUT_SIZE[0])
 
-resized.write('output4.jpg')
+resized.write(output_file)
+puts "Wrote #{output_file}"
 
 
-puts "Wrote output.jpg"

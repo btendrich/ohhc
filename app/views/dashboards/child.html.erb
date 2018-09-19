@@ -1,0 +1,135 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center">
+                    <div class="row">
+                        <div class="col-lg-12" id="large-images">
+                            <figure class="figure" id="image-1">
+                                <img class="img-responsive rounded" id="large-image" src="<%= image_path("kids/1001_md.jpg") %>">
+                                <figcaption class="figure-caption">Here is a caption</figcaption>
+                            </figure>
+                            <figure class="figure" id="image-2">
+                                <img class="img-responsive rounded" id="large-image" src="<%= image_path("kids/1002_md.jpg") %>">
+                                <figcaption class="figure-caption">Here is a caption</figcaption>
+                            </figure>
+                            <figure class="figure" id="image-3">
+                                <img class="img-responsive rounded" id="large-image" src="<%= image_path("kids/1003_md.jpg") %>">
+                                <figcaption class="figure-caption">Here is a caption</figcaption>
+                            </figure>
+                            <figure class="figure" id="image-4">
+                                <img class="img-responsive rounded" id="large-image" src="<%= image_path("kids/1004_md.jpg") %>">
+                                <figcaption class="figure-caption">Here is a caption</figcaption>
+                            </figure>
+                            <figure class="figure" id="image-5">
+                                <video width="320" height="240" controls>
+                                    <source src="https://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <figcaption class="figure-caption">Here is a caption</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="row m-t-md">
+                        <div class="col-lg-12">
+                            <a class="m-xs" onclick="displayImage(1);"><img class="img-thumbnail" src="<%= image_path('kids/1001_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="displayImage(2);"><img class="img-thumbnail" src="<%= image_path('kids/1002_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="displayImage(3);"><img class="img-thumbnail" src="<%= image_path('kids/1003_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="displayImage(4);"><img class="img-thumbnail" src="<%= image_path('kids/1004_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="displayImage(5);"><img class="img-thumbnail" src="<%= image_path('kids/1005_s.jpg') %>"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h1 class="text-center">Name</h1>
+                    <p><%= DashboardsController.new.lorem %></p>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <p><%= DashboardsController.new.lorem %></p>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center">
+                    <div class="row">
+                        <div class="col-lg-12" id="large-image-container">
+                            <figure class="figure">
+                                <img class="img-responsive rounded" id="large-image" src="<%= image_path("kids/1001_md.jpg") %>">
+                                <figcaption class="figure-caption">Here is a caption</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="row m-t-md">
+                        <div class="col-lg-12">
+                            <a class="m-xs" onclick="$('#large-image').attr('src','<%= image_path('kids/1001_md.jpg'); %>');"><img class="img-thumbnail" src="<%= image_path('kids/1001_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="$('#large-image').attr('src','<%= image_path('kids/1002_md.jpg'); %>');"><img class="img-thumbnail" src="<%= image_path('kids/1002_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="$('#large-image').attr('src','<%= image_path('kids/1003_md.jpg'); %>');"><img class="img-thumbnail" src="<%= image_path('kids/1003_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="$('#large-image').attr('src','<%= image_path('kids/1004_md.jpg'); %>');"><img class="img-thumbnail" src="<%= image_path('kids/1004_s.jpg') %>"></a>
+                            <a class="m-xs" onclick="$('#large-image').attr('src','<%= image_path('kids/1005_md.jpg'); %>');"><img class="img-thumbnail" src="<%= image_path('kids/1005_s.jpg') %>"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h1 class="text-center">Name</h1>
+                    <p><%= DashboardsController.new.lorem %></p>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h1 class="text-center">Name</h1>
+                    <p><%= DashboardsController.new.lorem %></p>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h1 class="text-center">Name</h1>
+                    <video width="320" height="240" controls>
+                        <source src="https://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+
+</div>
+
+<% content_for :javascript do %>
+
+<script type="text/javascript">
+
+    $(function() {
+        $("#large-images").children().hide();
+        $("#image-1").show();
+    });
+    
+    function displayImage(number) {
+        $("#large-images").children().hide();
+        $("#image-"+number).show();
+    };
+
+</script>
+
+<% end %>
