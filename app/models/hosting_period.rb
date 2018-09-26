@@ -1,2 +1,0 @@
-class HostingPeriod < ApplicationRecord
-end
