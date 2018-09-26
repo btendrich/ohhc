@@ -30,6 +30,20 @@
             <!-- Page wrapper -->
             <%= render 'layouts/topnavbar' %>
 
+
+            <!-- Notification alerts -->
+            <% if notice %>
+            <div class="row">
+                <div class="col-12-sm">
+                    <div class="alert alert-success alert-dismissable">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <%= notice %>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+
+
             <!-- Main view  -->
             <%= yield %>
 
