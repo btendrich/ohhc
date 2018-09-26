@@ -4,15 +4,25 @@
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                 <i class="fa fa-reorder"></i>
             </button>
+            
             <a href="/" class="navbar-brand">OHHC Children</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
+                <li class="<%= current_class? dashboards_register_path %>">
+                    <%= link_to 'Register', dashboards_register_path, 'aria-expanded': 'false', 'role': 'button' %>
+                </li>
                 <li class="<%= current_class? dashboards_children2_path %>">
                     <%= link_to 'Children', dashboards_children2_path, 'aria-expanded': 'false', 'role': 'button' %>
                 </li>
                 <li class="<%= current_class? dashboards_child_path %>">
                     <%= link_to 'Child', dashboards_child_path, 'aria-expanded': 'false', 'role': 'button' %>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Administrative<span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><%= link_to 'Hosting Periods', hosting_periods_path %></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Drop Down Sample<span class="caret"></span></a>
@@ -26,9 +36,9 @@
             </ul>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <a href="#">
+                    <%= link_to dashboards_register_path do %>
                         <i class="fa fa-sign-out"></i> Log out (your@emailaddress.com)
-                    </a>
+                    <% end %>
                 </li>
             </ul>
         </div>

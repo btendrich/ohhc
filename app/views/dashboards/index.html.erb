@@ -3,6 +3,9 @@
         <h1>Example Pages</h1>
         <h3>Here are the example pages built so far:</h3>
         <ul>
+            <li><%= link_to 'Register', dashboards_register_path %></li>
+            <p>The registration page used when an unknown user tries to view the photolist (this should only show up once per device).</p>
+
             <li><%= link_to 'Children', dashboards_children2_path %></li>
             <p>A listing of all children with photos and truncated descriptions of them.</p>
 
@@ -10,6 +13,8 @@
             <p>A details page on a particular child (or sibling group).</p>
 
         </ul>
+        
+        <p>The photos are just the first 48 photos I found on the google photos album, they are assigned random names and other information (status, scholarship, country, etc.) each time a page is generated.</p>
 
     </div>
 </div>

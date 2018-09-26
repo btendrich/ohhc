@@ -1,0 +1,32 @@
+<%= form_with(model: hosting_period, local: true) do |form| %>
+  <% if hosting_period.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hosting_period.errors.count, "error") %> prohibited this hosting_period from being saved:</h2>
+
+      <ul>
+      <% hosting_period.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :hosting_period_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :begins %>
+    <%= form.date_select :begins, id: :hosting_period_begins %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visible %>
+    <%= form.check_box :visible, id: :hosting_period_visible %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -58,4 +58,8 @@ class DashboardsController < ApplicationController
 
   end
   
+  def register
+    render :layout => "empty"
+  end
+  
 end

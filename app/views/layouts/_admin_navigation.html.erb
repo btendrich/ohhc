@@ -1,0 +1,252 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" class="img-circle" src="<%= image_url 'profile_small.jpg' %>"/>
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">David Williams</strong>
+                            </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="">Profile</a>
+                        </li>
+                        <li><a href="">Contacts</a>
+                        </li>
+                        <li><a href="">Mailbox</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li class="<%= is_active_controller('dashboards') %>">
+                <a href=""><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Dashboards</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('dashboards', 'in') %>">
+                    <li class="<%= is_active_action('dashboard_1') %>"><%= link_to "Dashboard v.1", root_path %></li>
+                    <li class="<%= is_active_action('dashboard_2') %>"><%= link_to "Dashboard v.2", root_path %></li>
+                    <li class="<%= is_active_action('dashboard_3') %>"><%= link_to "Dashboard v.3", root_path %></li>
+                    <li class="<%= is_active_action('dashboard_4_1') %>"><%= link_to "Dashboard v.4", root_path %></li>
+                    <li class="<%= is_active_action('dashboard_5') %>"><%= link_to "Dashboard v.5", root_path %></li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('layoutsoptions') %>">
+                <%= link_to root_path do %>
+                <i class="fa fa-diamond"></i> <span class="nav-label" data-i18n="nav.layouts">Layouts</span> <span class="label label-primary pull-right">NEW</span>
+                <% end %>
+            </li>
+            <li class="<%= is_active_controller('graphs') %>">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="nav.graphs">Graphs</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('graphs', 'in') %>">
+                    <li class="<%= is_active_action('flot') %>"><%= link_to "Flot Charts", root_path %></li>
+                    <li class="<%= is_active_action('morris') %>"><%= link_to "Morris.js Charts", root_path %></li>
+                    <li class="<%= is_active_action('rickshaw') %>"><%= link_to "Rickshaw Charts", root_path %> </li>
+                    <li class="<%= is_active_action('chartjs') %>"><%= link_to "Chart.js", root_path %></li>
+                    <li class="<%= is_active_action('chartist') %>"><%= link_to "Chartist", root_path %></li>
+                    <li class="<%= is_active_action('c3charts') %>"><%= link_to "c3 charts", root_path %></li>
+                    <li class="<%= is_active_action('peity') %>"><%= link_to "Peity Charts", root_path %></li>
+                    <li class="<%= is_active_action('sparkline') %>"><%= link_to "Sparkline Charts", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('mailbox') %>">
+                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('mailbox', 'in') %>">
+                    <li class="<%= is_active_action('inbox') %>"><%= link_to "Inbox", root_path %> </li>
+                    <li class="<%= is_active_action('email_view') %>"><%= link_to "Email view", root_path %> </li>
+                    <li class="<%= is_active_action('compose_email') %>"><%= link_to "Compose email", root_path %> </li>
+                    <li class="<%= is_active_action('email_templates') %>"><%= link_to "Email templates", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('metrics') %>">
+                <%= link_to root_path do %>
+                <i class="fa fa-pie-chart"></i> <span class="nav-label" data-i18n="nav.metrics">Metrics</span>
+                <% end %>
+            </li>
+            <li class="<%= is_active_controller('widgets') %>">
+                <%= link_to root_path do %>
+                <i class="fa fa-flask"></i> <span class="nav-label" data-i18n="nav.widgets">Widgets</span>
+                <% end %>
+            </li>
+            <li class="<%= is_active_controller('forms') %>">
+                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label" data-i18n="nav.forms">Forms</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('forms', 'in') %>">
+                    <li class="<%= is_active_action('basic_forms') %>"><%= link_to "Basic form", root_path %></li>
+                    <li class="<%= is_active_action('advanced') %>"><%= link_to "Advanced Plugins", root_path %> </li>
+                    <li class="<%= is_active_action('wizard') %>"><%= link_to "Wizard", root_path %> </li>
+                    <li class="<%= is_active_action('file_upload') %>"><%= link_to "File Upload", root_path %> </li>
+                    <li class="<%= is_active_action('text_editor') %>"><%= link_to "Text Editor", root_path %> </li>
+                    <li class="<%= is_active_action('autocomplete') %>"><%= link_to "Autocomplete", root_path %> </li>
+                    <li class="<%= is_active_action('markdown') %>"><%= link_to "Markdown", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('appviews') %>">
+                <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label" data-i18n="nav.appviews">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('appviews', 'in') %>">
+                    <li class="<%= is_active_action('contacts') %>"><%= link_to "Contacts", root_path %> </li>
+                    <li class="<%= is_active_action('profile') %>"><%= link_to "Profile", root_path %> </li>
+                    <li class="<%= is_active_action('profile_two') %>"><%= link_to "Profile v.2", root_path %> </li>
+                    <li class="<%= is_active_action('contacts_two') %>"><%= link_to "Contacts v.2", root_path %> </li>
+                    <li class="<%= is_active_action('projects') %>"><%= link_to "Projects", root_path %> </li>
+                    <li class="<%= is_active_action('project_detail') %>"><%= link_to "Project detail", root_path %> </li>
+                    <li class="<%= is_active_action('activity_stream') %>"><%= link_to "Activity stream", root_path %> </li>
+                    <li class="<%= is_active_action('teams_board') %>"><%= link_to "Teams board", root_path %> </li>
+                    <li class="<%= is_active_action('social_feed') %>"><%= link_to "Social feed", root_path %> </li>
+                    <li class="<%= is_active_action('clients') %>"><%= link_to "Clients", root_path %> </li>
+                    <li class="<%= is_active_action('outlook_view') %>"><%= link_to "Outlook view", root_path %> </li>
+                    <li class="<%= is_active_action('vote_list') %>"><%= link_to "Vote list", root_path %> </li>
+                    <li class="<%= is_active_action('file_menager') %>"><%= link_to "File manager", root_path %> </li>
+                    <li class="<%= is_active_action('calendar') %>"><%= link_to "Calendar", root_path %> </li>
+                    <li class="<%= is_active_action('issue_tracker') %>"><%= link_to "Issue trakcer", root_path %> </li>
+                    <li class="<%= is_active_action('blog') %>"><%= link_to "Blog", root_path %> </li>
+                    <li class="<%= is_active_action('article') %>"><%= link_to "Article", root_path %> </li>
+                    <li class="<%= is_active_action('faq') %>"><%= link_to "FAQ", root_path %> </li>
+                    <li class="<%= is_active_action('timeline') %>"><%= link_to "Timeline", root_path %> </li>
+                    <li class="<%= is_active_action('pin_board') %>"><%= link_to "Pin board", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('pages') %>">
+                <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label" data-i18n="nav.otherpages">Other Pages</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('pages', 'in') %>">
+                    <li class="<%= is_active_action('search_results') %>"><%= link_to "Search results", root_path %> </li>
+                    <li class="<%= is_active_action('lockscreen') %>"><%= link_to "Lockscreen", root_path %> </li>
+                    <li class="<%= is_active_action('invoice') %>"><%= link_to "Invoice", root_path %> </li>
+                    <li class="<%= is_active_action('login') %>"><%= link_to "Login", root_path %> </li>
+                    <li class="<%= is_active_action('login_2') %>"><%= link_to "Login v.2", root_path %></li>
+                    <li class="<%= is_active_action('forgot_password') %>"><%= link_to "Forgot password", root_path %></li>
+                    <li class="<%= is_active_action('register') %>"><%= link_to "Register", root_path %> </li>
+                    <li class="<%= is_active_action('not_found_error') %>"><%= link_to "404 Page", root_path %> </li>
+                    <li class="<%= is_active_action('internal_server_error') %>"><%= link_to "500 Page", root_path %> </li>
+                    <li class="<%= is_active_action('empty_page') %>"><%= link_to "Empty page", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('miscellaneous') %>">
+                <a href="#"><i class="fa fa-globe"></i> <span class="nav-label" data-i18n="nav.miscellaneous">Miscellaneous</span><span class="label label-info pull-right">NEW</span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('miscellaneous', 'in') %>">
+                    <li class="<%= is_active_action('notification') %>"><%= link_to "Notification", root_path %> </li>
+                    <li class="<%= is_active_action('nestablelist') %>"><%= link_to "Nestable list", root_path %></li>
+                    <li class="<%= is_active_action('agile_board') %>"><%= link_to "Agile board", root_path %></li>
+                    <li class="<%= is_active_action('timeline_second_version') %>"><%= link_to "Timeline v.2", root_path %> </li>
+                    <li class="<%= is_active_action('diff') %>"><%= link_to "Diff", root_path %> </li>
+                    <li class="<%= is_active_action('pdf_viewer') %>"><%= link_to "PDF viewer", root_path %> </li>
+                    <li class="<%= is_active_action('i18support') %>"><%= link_to "i18 support", root_path %> </li>
+                    <li class="<%= is_active_action('sweet_alert') %>"><%= link_to "Sweet alert", root_path %> </li>
+                    <li class="<%= is_active_action('idle_timer') %>"><%= link_to "Idle timer", root_path %> </li>
+                    <li class="<%= is_active_action('truncate') %>"><%= link_to "Truncate", root_path %> </li>
+                    <li class="<%= is_active_action('password_meter') %>"><%= link_to "Password meter", root_path %> </li>
+                    <li class="<%= is_active_action('spinners') %>"><%= link_to "Spinners", root_path %> </li>
+                    <li class="<%= is_active_action('spinners_usage') %>"><%= link_to "Spinners usage", root_path %> </li>
+                    <li class="<%= is_active_action('live_favicon') %>"><%= link_to "Live favicon", root_path %> </li>
+                    <li class="<%= is_active_action('google_maps') %>"><%= link_to "Google maps", root_path %> </li>
+                    <li class="<%= is_active_action('datamaps') %>"><%= link_to "Datamaps", root_path %> </li>
+                    <li class="<%= is_active_action('social_buttons') %>"><%= link_to "Social buttons", root_path %> </li>
+                    <li class="<%= is_active_action('code_editor') %>"><%= link_to "Code editor", root_path %> </li>
+                    <li class="<%= is_active_action('modal_window') %>"><%= link_to "Modal window", root_path %> </li>
+                    <li class="<%= is_active_action('clipboard') %>"><%= link_to "Clipboard", root_path %> </li>
+                    <li class="<%= is_active_action('text_spinners') %>"><%= link_to "Text spinners", root_path %> </li>
+                    <li class="<%= is_active_action('forum_view') %>"><%= link_to "Forum view", root_path %> </li>
+                    <li class="<%= is_active_action('validation') %>"><%= link_to "Validation", root_path %> </li>
+                    <li class="<%= is_active_action('tree_view') %>"><%= link_to "Tree view", root_path %> </li>
+                    <li class="<%= is_active_action('loading_buttons') %>"><%= link_to "Loading buttons", root_path %> </li>
+                    <li class="<%= is_active_action('chat_view') %>"><%= link_to "Chat view", root_path %> </li>
+                    <li class="<%= is_active_action('masonry') %>"><%= link_to "Masonry", root_path %> </li>
+                    <li class="<%= is_active_action('tour') %>"><%= link_to "Tour", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('uielements') %>">
+                <a href="#"><i class="fa fa-flask"></i> <span class="nav-label" data-i18n="nav.uielements">UI Elements</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('uielements', 'in') %>">
+                    <li class="<%= is_active_action('typography') %>"><%= link_to "Typography", root_path %></li>
+                    <li class="<%= is_active_action('icons') %>"><%= link_to "Icons", root_path %> </li>
+                    <li class="<%= is_active_action('draggable_panels') %>"><%= link_to "Draggable Panels", root_path %> </li>
+                    <li class="<%= is_active_action('resizeable_panels') %>"><%= link_to "Resizeable Panels", root_path %> </li>
+                    <li class="<%= is_active_action('buttons') %>"><%= link_to "Buttons", root_path %></li>
+                    <li class="<%= is_active_action('video') %>"><%= link_to "Video", root_path %> </li>
+                    <li class="<%= is_active_action('tables_panels') %>"><%= link_to "Panels", root_path %> </li>
+                    <li class="<%= is_active_action('tabs') %>"><%= link_to "Tabs", root_path %> </li>
+                    <li class="<%= is_active_action('notifications_tooltips') %>"><%= link_to "Notifications & Tooltips", root_path %> </li>
+                    <li class="<%= is_active_action('helper_classes') %>"><%= link_to "Helper css classes", root_path %> </li>
+                    <li class="<%= is_active_action('badges_labels_progress') %>"><%= link_to "Badges, Labels, Progress", root_path %> </li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('gridoptions') %>">
+                <%= link_to root_path do %>
+                <i class="fa fa-laptop"></i> <span class="nav-label" data-i18n="nav.gridoptions">Grid options</span>
+                <% end %>
+            </li>
+            <li class="<%= is_active_controller('tables') %>">
+                <a href="#"><i class="fa fa-table"></i> <span class="nav-label" data-i18n="nav.tables">Tables</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('tables', 'in') %>">
+                    <li class="<%= is_active_action('static_tables') %>"><%= link_to "Static Tables", root_path %> </li>
+                    <li class="<%= is_active_action('data_tables') %>"><%= link_to "Data Tables", root_path %></li>
+                    <li class="<%= is_active_action('foo_tables') %>"><%= link_to "Foo Table", root_path %></li>
+                    <li class="<%= is_active_action('jqgrid') %>"><%= link_to "jqGrid", root_path %></li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('commerce') %>">
+                <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label" data-i18n="nav.ecommerce">E-commerce</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('commerce', 'in') %>">
+                    <li class="<%= is_active_action('products_grid') %>"><%= link_to "Products grid", root_path %> </li>
+                    <li class="<%= is_active_action('products_list') %>"><%= link_to "Products list", root_path %></li>
+                    <li class="<%= is_active_action('product_edit') %>"><%= link_to "Product edit", root_path %></li>
+                    <li class="<%= is_active_action('product_detail') %>"><%= link_to "Product detail", root_path %></li>
+                    <li class="<%= is_active_action('cart') %>"><%= link_to "Cart", root_path %></li>
+                    <li class="<%= is_active_action('orders') %>"><%= link_to "Orders", root_path %></li>
+                    <li class="<%= is_active_action('payments') %>"><%= link_to "Credit Card form", root_path %></li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('gallery') %>">
+                <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label" data-i18n="nav.gallery">Gallery</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('gallery', 'in') %>">
+                    <li class="<%= is_active_action('basic_gallery') %>"><%= link_to "Lightbox Gallery", root_path %> </li>
+                    <li class="<%= is_active_action('slick_carusela') %>"><%= link_to "Slick Carousel", root_path %> </li>
+                    <li class="<%= is_active_action('bootstrap_carusela') %>"><%= link_to "Bootstrap Carousel", root_path %> </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label" data-i18n="nav.menulevels">Menu Levels </span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">Third Level <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a href="#">Second Level Item</a></li>
+                    <li>
+                        <a href="#">Second Level Item</a></li>
+                    <li>
+                        <a href="#">Second Level Item</a></li>
+                </ul>
+            </li>
+            <li class="<%= is_active_controller('cssanimations') %>">
+                <%= link_to root_path do %>
+                <i class="fa fa-magic"></i> <span class="nav-label" data-i18n="nav.animations">CSS Animations </span><span class="label label-info pull-right">62</span>
+                <% end %>
+            </li>
+            <li class="landing_link">
+                <%= link_to root_path do %>
+                <i class="fa fa-star"></i> <span class="nav-label" data-i18n="nav.landing">Landing page </span>
+                <% end %>
+            </li>
+        </ul>
+
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @hosting_period.name %>
+</p>
+
+<p>
+  <strong>Begins:</strong>
+  <%= @hosting_period.begins %>
+</p>
+
+<p>
+  <strong>Visible:</strong>
+  <%= @hosting_period.visible %>
+</p>
+
+<%= link_to 'Edit', edit_hosting_period_path(@hosting_period) %> |
+<%= link_to 'Back', hosting_periods_path %>

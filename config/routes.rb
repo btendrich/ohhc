@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :hosting_periods
   root to: 'dashboards#index'
 
   # All routes
@@ -7,5 +8,6 @@ Rails.application.routes.draw do
   get "dashboards/children"
   get "dashboards/children2"
   get "dashboards/child"
+  get "dashboards/register"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
