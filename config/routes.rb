@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "dashboards/children"
   get "dashboards/children2"
   get "dashboards/child"
+  get "dashboards/child_adminview"
   get "dashboards/register"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

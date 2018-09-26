@@ -31,7 +31,8 @@ class DashboardsController < ApplicationController
     
     1.upto(49) {|i|
       length = 96 + rand(64)
-      @kids << {name: "U1234-#{i}", img: "kids/#{1000+i}_tn.jpg", description: lorem.truncate(length, separator: /\s/), :status => statuses.sample, :scholarship => rand(6) == 1 ? 'Scholarship' : nil }
+      rand(100)+9000
+      @kids << {name: "X#{rand(100)+9000}: \"#{(65 + rand(25)).chr}\"", img: "kids/#{1000+i}_tn.jpg", description: lorem.truncate(length, separator: /\s/), :status => statuses.sample, :country => ['Latvia','Ukraine'].sample, :scholarship => rand(6) == 1 ? 'Scholarship' : nil }
     }
     
     @kids.shuffle!
@@ -40,7 +41,7 @@ class DashboardsController < ApplicationController
   
   def child
     @kid = {
-      :name => "U9999",
+      :name => "X#{rand(100)+9000}: \"#{(65 + rand(25)).chr}\"",
       :description => lorem,
       :status => ['On-Hold','Available'].sample,
       :country => ['Latvia','Ukraine'].sample,
@@ -54,8 +55,24 @@ class DashboardsController < ApplicationController
     }
     
     @images = @images.sample(5);
+  end
 
+  def child_adminview
+    @kid = {
+      :name => "X#{rand(100)+9000}: \"#{(65 + rand(25)).chr}\"",
+      :description => lorem,
+      :status => ['On-Hold','Available'].sample,
+      :country => ['Latvia','Ukraine'].sample,
+      :scholarship => rand(3)*100,
+      :size => ['Single', 'Sibling Pair', 'Sibling Group'].sample,
+    }
+    @images = []
 
+    1.upto(49) {|i|
+      @images << {:thumbnail => "kids/#{1000+i}_s.jpg", :medium => "kids/#{1000+i}_md.jpg", :full_size => "kids/#{1000+i}.jpg", :caption => "This is a caption about image #{1000+i}.jpg"}
+    }
+    
+    @images = @images.sample(5);
   end
   
   def register

@@ -167,7 +167,13 @@
                             <span class="child-left-flag">Scholarship</span>
                         <% end %>
                         <%= link_to child[:name], dashboards_child_path, class: 'child-name' %>
+                        <% if child[:country] == 'Ukraine' %>
                         <span class="child-country"><img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine</span>
+                        <% elsif child[:country] == 'Latvia' %>
+                        <span class="child-country"><img src="<%= image_path('flags/16/Latvia.png')%>"> Latvia</span>
+                        <% else %>
+                        <span class="child-country"><%= child[:country] %></span>
+                        <% end %>
                         <div class="small">
                             <%= child[:description] %>
                         </div>
