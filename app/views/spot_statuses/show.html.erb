@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Spot Statuses ID #<%= @spot_status.id %></h5>
+            </div>
+            <div class="ibox-content">
+                                <p>
+                    <strong>Name:</strong>
+                    <%= @spot_status.name %>
+                </p>
+
+                                <p>
+                    <strong>Color:</strong>
+                    <%= @spot_status.color %>
+                </p>
+
+                                
+                <hr>
+                <div class="btn">
+                    <%= link_to spot_statuses_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                    <%= link_to edit_spot_status_path(@spot_status), class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-edit"></i> Edit Spot Status
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

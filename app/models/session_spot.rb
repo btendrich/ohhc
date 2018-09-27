@@ -1,0 +1,2 @@
+class SessionSpot < ApplicationRecord
+end

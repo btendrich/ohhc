@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :hosting_periods
+  resources :children
+  resources :spot_statuses
+  resources :session_spots
+  resources :hosting_sessions
   root to: 'dashboards#index'
 
   # All routes

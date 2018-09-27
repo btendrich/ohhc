@@ -1,0 +1,2 @@
+module SpotStatusesHelper
+end

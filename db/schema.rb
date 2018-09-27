@@ -10,12 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919212843) do
+ActiveRecord::Schema.define(version: 20180927002317) do
 
-  create_table "hosting_periods", force: :cascade do |t|
+  create_table "children", force: :cascade do |t|
     t.string "name"
+    t.string "country"
+    t.string "size"
+    t.string "age_range"
+    t.string "gender"
+    t.text "description"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hosting_sessions", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
     t.date "begins"
-    t.boolean "visible"
+    t.boolean "public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "session_spots", force: :cascade do |t|
+    t.integer "child_id"
+    t.integer "hosting_session_id"
+    t.integer "status_id"
+    t.integer "scholarship"
+    t.integer "row_order"
+    t.text "public_notes"
+    t.text "private_notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id", "hosting_session_id"], name: "index_session_spots_on_child_id_and_hosting_session_id", unique: true
+  end
+
+  create_table "spot_statuses", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

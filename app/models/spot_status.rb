@@ -1,0 +1,2 @@
+class SpotStatus < ApplicationRecord
+end
