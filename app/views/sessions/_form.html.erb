@@ -1,0 +1,31 @@
+<%= bootstrap_form_for( @session, layout: :horizontal ) do |form| %>
+  <% if session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+      <ul>
+      <% session.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+                <%= form.text_field :name, id: :session_name %>
+            </div>
+
+    <div class="field">
+                <%= form.date_select :beings, id: :session_beings %>
+            </div>
+
+    <div class="field">
+                <%= form.check_box :public, id: :session_public %>
+            </div>
+
+    <div class="btn">
+        <%= form.submit class: 'btn btn-sm btn-outline dim btn-success' do %>
+            <i class="fa fa-chevron-left"></i> Submit
+        <% end %>
+    </div>
+<% end %>
