@@ -19,6 +19,8 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem "bootstrap_form", "~> 2.7"
+gem 'aws-sdk', '~> 3'
+gem 'pg', '~> 0.18'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

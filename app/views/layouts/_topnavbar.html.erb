@@ -9,14 +9,19 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="<%= current_class? dashboards_register_path %>">
-                    <%= link_to 'Register', dashboards_register_path, 'aria-expanded': 'false', 'role': 'button' %>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Sample Pages<span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><%= link_to 'Register', dashboards_register_path %></li>
+                        <li><%= link_to 'Children', dashboards_children2_path %></li>
+                        <li><%= link_to 'Individual Child', dashboards_child_path %></li>
+                    </ul>
                 </li>
-                <li class="<%= current_class? dashboards_children2_path %>">
-                    <%= link_to 'Children', dashboards_children2_path, 'aria-expanded': 'false', 'role': 'button' %>
-                </li>
-                <li class="<%= current_class? dashboards_child_path %>">
-                    <%= link_to 'Child', dashboards_child_path, 'aria-expanded': 'false', 'role': 'button' %>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Public<span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><%= link_to 'Winter Session', controller: 'public', action: 'children', id: 1 %></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Administrative<span class="caret"></span></a>
@@ -25,15 +30,7 @@
                         <li><%= link_to 'Children', children_path %></li>
                         <li><%= link_to 'Session Spots', session_spots_path %></li>
                         <li><%= link_to 'Spot Statuses', spot_statuses_path %></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Drop Down Sample<span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="">Menu item</a></li>
-                        <li><a href="">Menu item</a></li>
-                        <li><a href="">Menu item</a></li>
-                        <li><a href="">Menu item</a></li>
+                        <li><%= link_to 'Child Photos', child_photos_path %></li>
                     </ul>
                 </li>
             </ul>

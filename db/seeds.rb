@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 spot_statuses = [
-  {:id => 1, :name => 'Available', :color => '1E9A1E'},
+  {:id => 1, :name => 'Available', :color => '#1E9A1E'},
   {:id => 2, :name => 'On-Hold', :color => 'orange'},
   {:id => 3, :name => 'Rehost', :color => 'orange'},
 ]
@@ -47,9 +47,10 @@ SessionSpot.delete_all
   # let's find any child ID's
   ids = []
   
-  child[:description].scan(/(U|L|\ )\s?(\d{3,4})/) do |match|
-    next unless ['U','L',' '].include? match[0] 
+  child[:description].scan(/(U|UK|L|\ )\s?(\d{3,4})/) do |match|
+    next unless ['U','L','UK',' '].include? match[0] 
     next if ['2018','2017'].include? match[1]
+    match[0] = 'U' if match[0] == 'UK'
     if match[0] == ' '
       if ids.count > 0
         id = "#{ids[0][0]}#{match[1]}"
@@ -107,12 +108,14 @@ SessionSpot.delete_all
   @child.update( {:name => record[:name] } )
   @child.update( {:country => record[:country] } )
   @child.update( {:size => record[:size] } )
+
+  @spot = SessionSpot.where(child_id: @child.id).where(hosting_session_id: 1)
+  @spot = SessionSpot.create!({:child_id => @child.id, :hosting_session_id => 1, :spot_status_id => record[:status] }) if @spot.empty?
   
-  @spot = SessionSpot.find_or_create_by(child_id: @child.id, hosting_session_id: 1)
   @spot.update( {:scholarship => record[:scholarship] } )
   @spot.update( {:public_notes => child[:description] } )
-  @spot.update( {:status_id => record[:status] } )
-
-  pp record
+  
+  pp @child
+  pp @spot
   
 end

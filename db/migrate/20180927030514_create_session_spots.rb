@@ -3,7 +3,7 @@ class CreateSessionSpots < ActiveRecord::Migration[5.1]
     create_table :session_spots do |t|
       t.integer :child_id
       t.integer :hosting_session_id
-      t.integer :status_id
+      t.integer :spot_status_id
       t.integer :scholarship
       t.integer :row_order
       t.text :public_notes
@@ -11,6 +11,5 @@ class CreateSessionSpots < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :session_spots, [:child_id, :hosting_session_id], unique: true
   end
 end

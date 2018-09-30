@@ -1,0 +1,86 @@
+<% content_for :page_title, @session.name %>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h1><%= @session.name %></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <% @spots.in_groups_of(4) do |row| %>
+    <div class="row">
+
+        <% row.each do |spot| %>
+        <% next if spot.nil? %>
+
+        <div class="col-md-3">
+
+            <div class="ibox">
+                <div class="ibox-content child-box">
+
+                    <div class="child-detail">
+                <%= link_to :action => 'child', :id => spot.child.id do %>
+                    <% if spot.child.main_photo %>
+                        <img src="https://s3.amazonaws.com/ohhc-photos/<%= spot.child.main_photo.key %>_sm.jpg" alt="image" class="img-thumbnail">
+                    <% else %>
+                        <img src="<%= image_path( 'generic.jpg' )%>" alt="image" class="img-thumbnail">
+                    <% end %>
+                <% end %>
+                    </div>
+                    <div class="child-desc">
+                        <% if spot.spot_status %>
+                            <span class="child-right-flag" style="background: <%= spot.spot_status.color%>"><%= spot.spot_status.name%></span>
+                        <% end %>
+                        <% if spot.scholarship != 0 %>
+                            <span class="child-left-flag">Scholarship</span>
+                        <% end %>
+                        <%= link_to spot.child.name, {:action => 'child', :id => spot.child.id}, class: 'child-name' %>
+                        <% if spot.child.country == 'Ukraine' %>
+                        <span class="child-country"><img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine</span>
+                        <% elsif spot.child.country == 'Latvia' %>
+                        <span class="child-country"><img src="<%= image_path('flags/16/Latvia.png')%>"> Latvia</span>
+                        <% else %>
+                        <span class="child-country"><%= spot.child.country %></span>
+                        <% end %>
+                        <div class="small">
+                            <%= spot.public_notes.truncate(128, separator: /\s/) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% end %>
+
+    </div>
+
+    <% end %>
+
+</div>
+
+<% content_for :javascript do %>
+
+<script type="text/javascript">
+
+
+$(function() {
+    $("#ionrange").ionRangeSlider({
+        min: 0,
+        max: 5000,
+        type: 'double',
+        prefix: "$",
+        maxPostfix: "+",
+        prettify: false,
+        hasGrid: true
+    });
+
+});
+
+<% end %>

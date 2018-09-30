@@ -18,3 +18,5 @@ Rails.application.config.assets.precompile += %w( hosting_sessions.css hosting_s
 Rails.application.config.assets.precompile += %w( session_spots.css session_spots.js )
 Rails.application.config.assets.precompile += %w( spot_statuses.css spot_statuses.js )
 Rails.application.config.assets.precompile += %w( children.css children.js )
+Rails.application.config.assets.precompile += %w( public.css public.js )
+Rails.application.config.assets.precompile += %w( child_photos.css child_photos.js )

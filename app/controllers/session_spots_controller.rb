@@ -69,6 +69,6 @@ class SessionSpotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_spot_params
-      params.require(:session_spot).permit(:child_id, :hosting_session_id, :status_id, :scholarship, :row_order, :public_notes, :private_notes)
+      params.require(:session_spot).permit(:child_id, :hosting_session_id, :spot_status_id, :scholarship, :row_order, :public_notes, :private_notes)
     end
 end

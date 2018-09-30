@@ -1,0 +1,84 @@
+//= require blueimp/css/blueimp-gallery.min.css
+//= require ionRangeSlider/ion.rangeSlider.css
+//= require ionRangeSlider/ion.rangeSlider.skinFlat.css
+
+
+.child-detail {
+  text-align: center;
+  padding: 30px 0;
+  padding-top: 15px;
+//  background-color: #f8f8f9;
+  color: #bebec3;
+  font-weight: 600;
+}
+
+.child-left-flag {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #E61C1C;
+  padding: 2px 6px;
+  position: absolute;
+  top: -28px;
+  left: 0;
+}
+
+.child-right-flag {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+//  background-color: #f8f8f9;
+  padding: 2px 6px;
+  position: absolute;
+  top: -28px;
+  right: 0;
+}
+
+.child-country {
+  color: #000;
+//  background-color: #f8f8f9;
+  padding: 6px 12px;
+  position: absolute;
+  top: 0px;
+  right: 0;
+}
+
+.child-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #676a6c;
+    display: block;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.child-name:hover,
+.child-name:focus {
+    color: #676a6c;
+}
+
+.child-desc {
+  padding: 0px 20px;
+  position: relative;
+}
+
+.child-box {
+  padding: 0;
+  border: 1px solid #e7eaec;
+}
+
+#large-image {
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    max-height: 600px;
+}
+
+#large-image-container {
+}
+
+#register-logo {
+    text-align: center;
+    background-color:#0C72C0;
+    padding: 25px;
+}

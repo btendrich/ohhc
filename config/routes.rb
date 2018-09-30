@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :child_photos
+  get 'public/children/:id', to: 'public#children'
+  get 'public/child/:id', to: 'public#child'
+
   resources :children
   resources :spot_statuses
   resources :session_spots

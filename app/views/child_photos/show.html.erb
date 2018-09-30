@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Child Photos ID #<%= @child_photo.id %></h5>
+            </div>
+            <div class="ibox-content">
+                                <p>
+                    <strong>Child:</strong>
+                    <%= @child_photo.child_id %>
+                </p>
+
+                                <p>
+                    <strong>Description:</strong>
+                    <%= @child_photo.description %>
+                </p>
+
+                                <p>
+                    <strong>Key:</strong>
+                    <%= @child_photo.key %>
+                </p>
+
+                                <p>
+                    <strong>Row order:</strong>
+                    <%= @child_photo.row_order %>
+                </p>
+
+                                
+                <hr>
+                <div class="btn">
+                    <%= link_to child_photos_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                    <%= link_to edit_child_photo_path(@child_photo), class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-edit"></i> Edit Child Photo
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

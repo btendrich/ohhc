@@ -6,7 +6,7 @@ RSpec.describe "session_spots/index", type: :view do
       SessionSpot.create!(
         :child_id => 2,
         :hosting_session_id => 3,
-        :status_id => 4,
+        :spot_status_id => 4,
         :scholarship => 5,
         :row_order => 6,
         :public_notes => "MyText",
@@ -15,7 +15,7 @@ RSpec.describe "session_spots/index", type: :view do
       SessionSpot.create!(
         :child_id => 2,
         :hosting_session_id => 3,
-        :status_id => 4,
+        :spot_status_id => 4,
         :scholarship => 5,
         :row_order => 6,
         :public_notes => "MyText",
