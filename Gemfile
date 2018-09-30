@@ -14,13 +14,14 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.5'
+#gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem "bootstrap_form", "~> 2.7"
 gem 'aws-sdk', '~> 3'
 gem 'pg', '~> 0.18'
+gem "responders"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -6,6 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+hosting_sessions = [
+  {:id => 1, :name => 'Christmas 2018', :begins => '2018-12-01', :public => true},
+  {:id => 2, :name => 'Summer 2018', :begins => '2018-07-01', :public => false},
+]
+
+hosting_sessions.each do |row|
+  HostingSession.find_or_create_by(id: row[:id]).update(row)
+end
+
+HostingSession.connection.execute("ALTER SEQUENCE hosting_sessions_id_seq RESTART WITH #{hosting_sessions.count + 1}")
+
+=begin
+
 spot_statuses = [
   {:id => 1, :name => 'Available', :color => '#1E9A1E'},
   {:id => 2, :name => 'On-Hold', :color => 'orange'},
@@ -16,14 +29,6 @@ spot_statuses.each do |row|
   SpotStatus.find_or_create_by(id: row[:id]).update(row)
 end
 
-hosting_sessions = [
-  {:id => 1, :name => 'Christmas 2018', :short_name => '18C', :begins => '2018-12-01', :public => true},
-  {:id => 2, :name => 'Summer 2018', :short_name => '18S', :begins => '2018-07-01', :public => false},
-]
-
-hosting_sessions.each do |row|
-  HostingSession.find_or_create_by(id: row[:id]).update(row)
-end
 
 # let's try and suck in stuff from output.yml
 @ignore_filenames = [
@@ -119,3 +124,5 @@ SessionSpot.delete_all
   pp @spot
   
 end
+
+=end

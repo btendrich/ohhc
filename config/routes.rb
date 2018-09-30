@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :sessions
   get 'public/children/:id', to: 'public#children'
   get 'public/child/:id', to: 'public#child'
 
