@@ -1,0 +1,2 @@
+module HostingSessionSpotChildrenHelper
+end

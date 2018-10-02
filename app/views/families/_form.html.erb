@@ -1,0 +1,43 @@
+<%= bootstrap_form_for( @family, layout: :horizontal ) do |form| %>
+  <% if family.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(family.errors.count, "error") %> prohibited this family from being saved:</h2>
+
+      <ul>
+      <% family.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+                <%= form.text_field :first_names, id: :family_first_names %>
+            </div>
+
+    <div class="field">
+                <%= form.text_field :last_name, id: :family_last_name %>
+            </div>
+
+    <div class="field">
+                <%= form.text_field :address, id: :family_address %>
+            </div>
+
+    <div class="field">
+                <%= form.text_field :city, id: :family_city %>
+            </div>
+
+    <div class="field">
+                <%= form.text_field :state, id: :family_state %>
+            </div>
+
+    <div class="field">
+                <%= form.text_field :zip, id: :family_zip %>
+            </div>
+
+    <div class="btn">
+        <%= form.submit class: 'btn btn-sm btn-outline dim btn-success' do %>
+            <i class="fa fa-chevron-left"></i> Submit
+        <% end %>
+    </div>
+<% end %>

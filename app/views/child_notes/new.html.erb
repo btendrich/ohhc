@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h1>New Child Note</h1>
+            </div>
+            <div class="ibox-content">
+                <%= render 'form', child_note: @child_note %>
+
+                <hr>
+                <div class="btn">
+                    <%= link_to child_notes_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Children ID #<%= @child.id %></h5>
+            </div>
+            <div class="ibox-content">
+                                <p>
+                    <strong>First name:</strong>
+                    <%= @child.first_name %>
+                </p>
+
+                                <p>
+                    <strong>Last name:</strong>
+                    <%= @child.last_name %>
+                </p>
+
+                                <p>
+                    <strong>Identifier:</strong>
+                    <%= @child.identifier %>
+                </p>
+
+                                <p>
+                    <strong>Country:</strong>
+                    <%= @child.country %>
+                </p>
+
+                                <p>
+                    <strong>Birthday:</strong>
+                    <%= @child.birthday %>
+                </p>
+
+                                <p>
+                    <strong>Gender:</strong>
+                    <%= @child.gender %>
+                </p>
+
+                                <p>
+                    <strong>Description:</strong>
+                    <%= @child.description %>
+                </p>
+
+                                <p>
+                    <strong>Sibling notes:</strong>
+                    <%= @child.sibling_notes %>
+                </p>
+
+                                <p>
+                    <strong>Orphanage:</strong>
+                    <%= @child.orphanage %>
+                </p>
+
+                                <p>
+                    <strong>Legal status:</strong>
+                    <%= @child.legal_status %>
+                </p>
+
+                                
+                <hr>
+                <div class="btn">
+                    <%= link_to children_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                    <%= link_to edit_child_path(@child), class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-edit"></i> Edit Child
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :child_notes
+  resources :families
+  resources :children
+  resources :hosting_session_spot_children
+  resources :spot_statuses
+  resources :hosting_session_spots
+  resources :hosting_sessions
   get 'public/children/:id', to: 'public#children'
   get 'public/child/:id', to: 'public#child'
 

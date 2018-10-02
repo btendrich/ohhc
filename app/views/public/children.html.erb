@@ -26,31 +26,27 @@
                 <div class="ibox-content child-box">
 
                     <div class="child-detail">
-                <%= link_to :action => 'child', :id => spot.child.id do %>
-                    <% if spot.child.main_photo %>
-                        <img src="https://s3.amazonaws.com/ohhc-photos/<%= spot.child.main_photo.key %>_sm.jpg" alt="image" class="img-thumbnail">
-                    <% else %>
+                <%= link_to :action => 'child', :id => spot.id do %>
                         <img src="<%= image_path( 'generic.jpg' )%>" alt="image" class="img-thumbnail">
-                    <% end %>
                 <% end %>
                     </div>
                     <div class="child-desc">
-                        <% if spot.spot_status %>
-                            <span class="child-right-flag" style="background: <%= spot.spot_status.color%>"><%= spot.spot_status.name%></span>
+                        <% if spot.status %>
+                            <span class="child-right-flag" style="background: <%= spot.status.color%>"><%= spot.status.name%></span>
                         <% end %>
                         <% if spot.scholarship != 0 %>
                             <span class="child-left-flag">Scholarship</span>
                         <% end %>
-                        <%= link_to spot.child.name, {:action => 'child', :id => spot.child.id}, class: 'child-name' %>
-                        <% if spot.child.country == 'Ukraine' %>
+                        <%= link_to spot.public_name, {:action => 'child', :id => spot.id}, class: 'child-name' %>
+                        <% if spot.country == 'Ukraine' %>
                         <span class="child-country"><img src="<%= image_path('flags/16/Ukraine.png')%>"> Ukraine</span>
-                        <% elsif spot.child.country == 'Latvia' %>
+                        <% elsif spot.country == 'Latvia' %>
                         <span class="child-country"><img src="<%= image_path('flags/16/Latvia.png')%>"> Latvia</span>
                         <% else %>
-                        <span class="child-country"><%= spot.child.country %></span>
+                        <span class="child-country"><%= spot.country %></span>
                         <% end %>
                         <div class="small">
-                            <%= spot.public_notes.truncate(128, separator: /\s/) %>
+                            <%= spot.description&.truncate(128, separator: /\s/) %>
                         </div>
                     </div>
                 </div>

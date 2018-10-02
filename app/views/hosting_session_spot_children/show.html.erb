@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Hosting Session Spot Children ID #<%= @hosting_session_spot_child.id %></h5>
+            </div>
+            <div class="ibox-content">
+                                <p>
+                    <strong>Child:</strong>
+                    <%= @hosting_session_spot_child.child_id %>
+                </p>
+
+                                <p>
+                    <strong>Hosting session spot:</strong>
+                    <%= @hosting_session_spot_child.hosting_session_spot_id %>
+                </p>
+
+                                
+                <hr>
+                <div class="btn">
+                    <%= link_to hosting_session_spot_children_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                    <%= link_to edit_hosting_session_spot_child_path(@hosting_session_spot_child), class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-edit"></i> Edit Hosting Session Spot Child
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

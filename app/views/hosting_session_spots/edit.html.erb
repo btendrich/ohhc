@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h1>Editing Hosting Session Spot</h1>
+            </div>
+            <div class="ibox-content">
+                <%= render 'form', hosting_session_spot: @hosting_session_spot %>
+
+                <hr>
+                <div class="btn">
+                    <%= link_to hosting_session_spots_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                    <%= link_to @hosting_session_spot, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-search"></i> Show
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

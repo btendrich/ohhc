@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Child Notes ID #<%= @child_note.id %></h5>
+            </div>
+            <div class="ibox-content">
+                                <p>
+                    <strong>Child:</strong>
+                    <%= @child_note.child_id %>
+                </p>
+
+                                <p>
+                    <strong>Title:</strong>
+                    <%= @child_note.title %>
+                </p>
+
+                                <p>
+                    <strong>Text:</strong>
+                    <%= @child_note.text %>
+                </p>
+
+                                
+                <hr>
+                <div class="btn">
+                    <%= link_to child_notes_path, class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-chevron-left"></i> Back
+                    <% end %>
+                    <%= link_to edit_child_note_path(@child_note), class: 'btn btn-sm btn-outline dim btn-primary' do %>
+                        <i class="fa fa-edit"></i> Edit Child Note
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
