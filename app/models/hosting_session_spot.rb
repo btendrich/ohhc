@@ -18,4 +18,20 @@ class HostingSessionSpot < ApplicationRecord
     children.first.country
   end
   
+  def public_photos
+    @files = []
+    children.each do |child|
+      @files << ChildFile.where(child_id: child.id).where(type: 'image/jpeg').where(public: true)
+    end
+    @files.flatten
+  end
+
+  def public_notes
+    @notes = []
+    children.each do |child|
+      @notes << ChildNote.where(child_id: child.id).where(public: true)
+    end
+    @notes.flatten
+  end
+
 end

@@ -34,6 +34,9 @@ end
 
 SpotStatus.connection.execute("ALTER SEQUENCE hosting_sessions_id_seq RESTART WITH #{hosting_sessions.count + 1}")
 
+@urls = []
+
+puts "Processing airtable.csv (from airtable)"
 
 @airtable = []
 @headers = nil
@@ -75,9 +78,6 @@ CSV.read("airtable.csv", :headers => true, :header_converters => :symbol).each d
     @hosting_session_spot.scholarship = /(\d+)/.match(row[:scholarship])[1] if row[:scholarship] =~ /\d+/
     @hosting_session_spot.save!
 
-    pp @hosting_session_spot
-    pp @hosting_session_spot_child
-
   end
 
   if row[:s18_hf].presence
@@ -107,7 +107,6 @@ CSV.read("airtable.csv", :headers => true, :header_converters => :symbol).each d
     @hosting_session_spot_child = HostingSessionSpotChild.new({:child_id => @child.id, :hosting_session_spot_id => @hosting_session_spot.id}) if @hosting_session_spot_child.nil?
     @hosting_session_spot_child.save!
     
-    puts "Summer 2018 Family is #{@family}"
   end
 
   if row[:c18_hf].presence
@@ -137,7 +136,6 @@ CSV.read("airtable.csv", :headers => true, :header_converters => :symbol).each d
     @hosting_session_spot_child = HostingSessionSpotChild.new({:child_id => @child.id, :hosting_session_spot_id => @hosting_session_spot.id}) if @hosting_session_spot_child.nil?
     @hosting_session_spot_child.save
     
-    puts "Christmas 2018 Family is #{@family}"
   end
   
   @child.first_name = row[:first_name]
@@ -164,12 +162,180 @@ CSV.read("airtable.csv", :headers => true, :header_converters => :symbol).each d
     @notes.save
   end
   
+  if row[:photo]
+    row[:photo].split(',').each do |photo|
+      match = /^(.+)\((\S+)\)$/.match(photo)
+      abort "Unknown photo line format '#{photo}'" unless match[2]
+      filename = match[1]
+      url = match[2]
+      
+      match = /^https.+\/(\w+)\_\S+$/.match(url)
+      abort "Unknown photo line format '#{photo}'" unless match[1]
+      airtable_id = match[1]
+      
+#      puts "Photo with UID #{airtable_id} is at #{url}"
+      
+      @photo = ChildFile.where(child_id: @child.id, description: airtable_id).first
+      @photo = ChildFile.new({:child_id => @child.id, :description => airtable_id}) if @photo.nil?
+      @photo.filename = filename
+      @photo.type = "image/jpeg"
+      @photo.key = url
+      @photo.public = true
+      @photo.save
+
+    end
+  end
+
+  if row[:interview_sheet]
+    row[:interview_sheet].split(',').each do |photo|
+      match = /^(.+)\((\S+)\)$/.match(photo)
+      abort "Unknown interview_sheet line format '#{photo}'" unless match[2]
+      filename = match[1]
+      url = match[2]
+      
+      match = /^https.+\/(\w+)\_\S+$/.match(url)
+      abort "Unknown interview_sheet line format '#{photo}'" unless match[1]
+      airtable_id = match[1]
+      
+#      puts "Interview sheet with UID #{airtable_id} is at #{url}"
+      
+      @photo = ChildFile.where(child_id: @child.id, description: airtable_id).first
+      @photo = ChildFile.new({:child_id => @child.id, :description => airtable_id}) if @photo.nil?
+      @photo.filename = filename
+      @photo.type = "image/jpeg"
+      @photo.key = url
+      @photo.public = true
+      @photo.save
+
+    end
+  end
+  
+#  pp row  
+end
+
+
+
+puts "Processing output.yml (from google photos)"
+
+
+@ignore_filenames = [
+  'Slide1.JPG',
+  'Slide3.JPG',
+  'Contact Us.jpg',
+]
+
+@children = YAML.load(File.read('output.yml'))
+
+puts "Read #{@children.count} records"
+
+@children.each do |child|
+  next unless child[:description]
+  next if @ignore_filenames.include? child[:filename]
+#  pp child
+  
+  # let's find any child ID's
+  ids = []
+  
+  child[:description].scan(/(U|UK|L|\ )?\s?(\d{3,4})/) do |match|
+    next unless ['U','L','UK',' '].include? match[0] 
+    next if ['2018','2017'].include? match[1]
+    match[0] = 'U' if match[0] == 'UK'
+    if match[0] == ' '
+      if ids.count > 0
+        id = "#{ids[0][0]}#{match[1]}"
+      else
+        id = "?#{match[1]}"
+      end
+    else
+      id = "#{match[0]}#{match[1]}"
+    end
+    next if ids.include? id
+    ids << id
+  end
+  
+  next unless ids.count > 0
+  
+  scholarship = 0
+  match = /\$(\d{2,4})\s+scholarship/i.match( child[:description] )
+  if match
+    scholarship = match[1].to_i
+  end
+  
+  country = ''
+  country = 'Ukraine' if ids.first =~ /^U/
+  country = 'Latvia' if ids.first =~ /^L/
+  
+  names = []
+  child[:description].scan(/\"([A-Z])\"/) do |match|
+    names << match[1]
+  end
+
+
+  status = 1 #available
+  status = 2 if child[:description].truncate(60, separator: /\s/) =~ /hold/i
+  status = 4 if child[:description].truncate(60, separator: /\s/) =~ /re.?host/i
+  
+
+  size = "Unknown"
+  case ids.count
+  when 1
+    size = "Single"
+  when 2
+    size = "Sibling Pair"
+  when 3
+    size = "Sibling Group"
+  end
   
   
-  pp @child
-  pp row
+  puts "Looking at child #{ids} and #{names}"
+  
+  ids.each do |id|
+    number = /(\d{3,4})/.match(id)[1]
+    @child = Child.find_by_identifier(number)
+ 
+    next unless @child
+    @child.country = country if country.presence
+    
+    @spot = @child.hosting_session_spots.where(hosting_session_id: 1).first
+    next unless @spot
+    
+    puts "Found child and session spot"
+    
+    @spot.status_id = status if status
+    @spot.scholarship = scholarship
+    
+    if @spot.description
+      next if @spot.description.include? child[:description]
+      @spot.description = @spot.description + "\n\n" + child[:description]
+    else
+      @spot.description = child[:description]
+    end
+      
+
+    @child.save
+    @spot.save
+    
+  end
+  
+  
+#  @child = Child.find_or_create_by(notes: child[:id])
+#  @child.update( {:name => record[:name] } )
+#  @child.update( {:country => record[:country] } )
+#  @child.update( {:size => record[:size] } )
+
+#  @spot = SessionSpot.where(child_id: @child.id).where(hosting_session_id: 1)
+#  @spot = SessionSpot.create!({:child_id => @child.id, :hosting_session_id => 1, :spot_status_id => record[:status] }) if @spot.empty?
+  
+#  @spot.update( {:scholarship => record[:scholarship] } )
+#  @spot.update( {:public_notes => child[:description] } )
+  
+#  pp @child
+#  pp @spot
   
 end
+
+
+
 
 =begin
 

@@ -18,6 +18,12 @@
                     <div class="row">
                         <div class="col-lg-12" id="large-images">
                             
+                            <% @spot.public_photos.each_with_index do |image, index| %>
+                            <figure class="figure" id="image-<%= index %>">
+                                <a href="<%= image.key %>"><img class="img-responsive rounded" id="large-image" src="<%= image.key %>"></a>
+                                <figcaption class="figure-caption"><%= image.description %></figcaption>
+                            </figure>
+                            <% end %>
 
                         </div>
                     </div>
@@ -46,6 +52,11 @@
                 </div>
                 <div class="ibox-content">
                     <p><strong>Age: </strong><%= child.age %></p>
+                    <p><strong>Gender: </strong><%= child.gender %></p>
+                    <p><strong>Description: </strong><%= child.description %></p>
+                    <p><strong>Sibling Notes: </strong><%= child.sibling_notes %></p>
+                    <p><strong>Orphan Court: </strong><%= child.orphanage %></p>
+                    <p><strong>Status: </strong><%= child.legal_status %></p>
                 </div>
             </div>
             <% end %>
